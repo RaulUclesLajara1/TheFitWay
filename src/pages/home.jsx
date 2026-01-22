@@ -18,6 +18,15 @@ const Home = () => {
                     <button className="bg-green-500 hover:bg-green-400 text-black px-6 py-2 rounded-full font-bold transition-all text-sm uppercase tracking-wider">
                         Descargar
                     </button>
+
+                    <div>
+                        <button className="bg-white hover:bg-yellow-500 text-black px-6 py-2 rounded-full font-bold transition-all text-sm uppercase tracking-wider me-2">
+                            Crear Cuenta
+                        </button>
+                        <button className="bg-white hover:bg-red-500 text-black px-6 py-2 rounded-full font-bold transition-all text-sm uppercase tracking-wider">
+                            Borrar Cuenta
+                        </button>
+                    </div>
                 </div>
             </nav>
 
@@ -110,6 +119,11 @@ const Home = () => {
                 <div className="mt-10 text-gray-600 text-xs flex justify-center gap-6">
                     
                     <Link to="/privacidad" className="hover:text-gray-400 cursor-pointer transition-colors">Politicas de Privacidad</Link>
+                    <Link to="/atletas" className="hover:text-gray-400 cursor-pointer transition-colors">Términos y Condiciones (atletas)</Link>
+                    <Link to="/entrenadores" className="hover:text-gray-400 cursor-pointer transition-colors">Términos y Condiciones (entrenadores)</Link>
+
+
+
                 </div>
             </footer>
         </div>
