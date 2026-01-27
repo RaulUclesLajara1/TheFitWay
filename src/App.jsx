@@ -7,6 +7,7 @@ import React from 'react'
 import Privacidad from './pages/privacidad'
 import Atletas from './pages/atletas'
 import Entrenadores from './pages/entrenadores'
+import Registro from './pages/registro'
 function App() {
   
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/privacidad" element={<Privacidad/>}/>
             <Route path ="/atletas" element={<Atletas/>}/>
             <Route path="/entrenadores" element={<Entrenadores/>}/>
+            <Route path="/registro" element ={<Registro/>}/>
         </Routes>
       </BrowserRouter>
     </React.StrictMode>
