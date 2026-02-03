@@ -1,56 +1,36 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; 
-
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../funciones/firebase';
 const Registro = () => {
     const [formData, setFormData] = useState({
         nombre: "",
         email: "",
         password: "",
     });
-
+    const [error, setError] = useState("")
+    const [exito,setExito] = useState("");
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Formulario enviado:", formData);
-    };
+
+        createUserWithEmailAndPassword(auth,formData.email,formData.password)
+        .then((userCredential)=>{
+            const user = userCredential.user;
+            setError("");
+            setExito("Usuario creado con éxito");
+        })
+        .catch((error) => {
+            console.log(`error: ${error.code}: ${error.message}`);
+            setExito("");
+            setError(error.message);
+        })
+    }    
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-   // Manejo token Google
-    const handleCredentialResponse = (response) => {
-        console.log("JWT Token recibido de Google:", response.credential);
-        
-    };
 
-    useEffect(() => {
-        
-        const renderGoogleButton = () => {
-            if (window.google) {
-                google.accounts.id.initialize({
-                    client_id: "368384361305-n13o9etlmilbmac47ot9fiveuf7lkau4.apps.googleusercontent.com",
-                    callback: handleCredentialResponse,
-                    context: "signup" 
-                });
-
-                google.accounts.id.renderButton(
-                    document.getElementById("botonGoogle"),
-                    { 
-                        type: "standard", 
-                        shape: "rectangular", 
-                        text: "signup_with",
-                        theme: "filled_white", 
-                        size: "large",
-                        width: "384", 
-                        logo_alignment: "left"
-                    }
-                );
-            }
-        };
-
-        
-        renderGoogleButton();
-    }, []);
 
     return (
         <div className="bg-black min-h-screen font-sans text-gray-300 selection:bg-green-500/30 flex flex-col justify-center items-center px-6">
@@ -79,6 +59,10 @@ const Registro = () => {
                         <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 ml-1">Contraseña</label>
                         <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="••••••••" className="w-full bg-black border border-white/10 px-4 py-3 text-sm text-white focus:outline-none focus:border-green-500 transition-colors" required />
                     </div>
+                    { error? 
+                    <p className="text-xs text-red-400 mb-2">{error}</p>: <></>}
+                    { exito? 
+                    <p className="text-xs text-green-400 mb-2">{exito}</p>: <></>}
 
                     <button type="submit" className="w-full bg-green-500 hover:bg-green-600 text-black font-black py-4 uppercase tracking-tighter italic transition-all">
                         Comenzar Entrenamiento
@@ -91,8 +75,7 @@ const Registro = () => {
                         <div className="flex-grow border-t border-white/10"></div>
                     </div>
 
-                    {/* BOTÓN GOOGLE DENTRO DEL FORM O JUSTO DEBAJO */}
-                    <div id="botonGoogle" className="flex justify-center"></div>
+                    
                 </form>
 
                 <div className="mt-8 text-center space-y-4">
