@@ -1,22 +1,27 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import {getMessaging } from "firebase/messaging";
 
+
+// Script de configuración con información de la cuenta de firebase (todo aparece en la consola al iniciar proyecto)
 const firebaseConfig = {
 
   apiKey: import.meta.env.VITE_API_KEY,
 
-  authDomain: "thefitway-be8d4.firebaseapp.com",
+  authDomain: "thefitway-1b3a2.firebaseapp.com",
 
-  projectId: "thefitway-be8d4",
+  databaseURL: "https://thefitway-1b3a2-default-rtdb.firebaseio.com",
 
-  storageBucket: "thefitway-be8d4.firebasestorage.app",
+  projectId: "thefitway-1b3a2",
 
-  messagingSenderId: "1077600517257",
+  storageBucket: "thefitway-1b3a2.firebasestorage.app",
 
-  appId: "1:1077600517257:web:e460b2bef22fef93015a58",
+  messagingSenderId: "659877094896",
 
-  measurementId: "G-3RYN3EG5J0"
+  appId: "1:659877094896:web:dd50dd18768f24a6dca935",
+
+  measurementId: "G-ZRFFW5WLCX"
 
 };
 
@@ -24,4 +29,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-export const auth = getAuth(app);
+export const auth = getAuth(app); //Obtener el objeto user de firebase
+export const messaging = getMessaging(app); //Enviar mensajes 

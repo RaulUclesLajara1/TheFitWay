@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png'
+
 const Home = () => {
     return (
         <div className="bg-black min-h-screen font-sans selection:bg-green-500/30">
@@ -8,7 +8,7 @@ const Home = () => {
             <nav className="fixed w-full z-50 bg-black/60 backdrop-blur-md border-b border-white/10">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <img src={logo} className="w-18 h-18 ">
+                        <img src="/assets/logo.png" className="w-18 h-18 ">
                             
                         </img>
                         <span className="text-xl font-extrabold tracking-tight italic uppercase text-white">
